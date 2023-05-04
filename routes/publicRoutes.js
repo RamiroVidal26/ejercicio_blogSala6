@@ -5,4 +5,5 @@ const { showHome, showContact, showAboutUs } = require("../controllers/pagesCont
 // Rutas relacionadas a la parte pública del sitio web:
 // ...
 router.get("/", showHome);
+
 module.exports = router;
