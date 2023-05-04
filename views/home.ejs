@@ -17,8 +17,9 @@
 
       <div class="container">
         <%for (let i = 0; i < 10; i++){%>
-          <h2><%= articles[i].title%></h2>
-        <%}%>
+          <a href="/articulos/<%= articles[i].id%>" class="text-decoration-none text-black"><%= articles[i].title%></a>
+        <hr>
+          <%}%>
       </div>
 
     <script
