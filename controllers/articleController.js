@@ -1,5 +1,5 @@
 const { render } = require("ejs");
-const { Article } = require("../models");
+const { Article, Comment } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -7,7 +7,13 @@ async function index(req, res) {}
 // Display the specified resource.
 async function show(req, res) {
   const id = req.params.id;
-  res.send(`Estoy entrando al articulo con id ${id}`);
+  const article = await Article.findByPk(id, { include: "user" });
+  const comments = await Comment.findAll({
+    where: {
+      articleId: id,
+    },
+  });
+  res.render("articlePage", { article, comments });
 }
 
 // Show the form for creating a new resource
