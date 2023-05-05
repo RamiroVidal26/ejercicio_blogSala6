@@ -19,7 +19,10 @@
 const { Article, User } = require("../models");
 
 async function showHome(req, res) {
-  const articles = await Article.findAll();
+  const articles = await Article.findAll({
+    order: [["createdAt", "DESC"]],
+    include: "user",
+  });
   res.render("home", { articles });
 }
 
@@ -33,6 +36,7 @@ async function showAboutUs(req, res) {
 
 async function showPanel(req, res) {
   const articles = await Article.findAll({ include: "user" });
+
   res.render("panel", { articles });
 }
 

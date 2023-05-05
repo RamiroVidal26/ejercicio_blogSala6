@@ -15,11 +15,12 @@
   <body>
     <%- include("partials/navbar")%>
 
-    <div class="container">
+    <div class="container mt-4 text-center">
       <%for (let i = 0; i < 10; i++){%>
       <a href="/articulos/<%= articles[i].id%>" class="text-decoration-none text-black"
-        ><%= articles[i].title%></a
-      >
+        ><span class="fs-2 text fw-bold d-block"><%= articles[i].title%></span>
+        <small><%= articles[i].user.firstname+" "+articles[i].user.lastname %></small>
+      </a>
 
       <hr />
       <%}%>
