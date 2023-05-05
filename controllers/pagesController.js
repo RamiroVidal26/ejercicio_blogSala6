@@ -16,7 +16,7 @@
  * no debería existir.
  */
 
-const { Article } = require("../models");
+const { Article, User } = require("../models");
 
 async function showHome(req, res) {
   const articles = await Article.findAll();
@@ -31,6 +31,11 @@ async function showAboutUs(req, res) {
   res.render("aboutUs");
 }
 
+async function showPanel(req, res) {
+  const articles = await Article.findAll({ include: "user" });
+  res.render("panel", { articles });
+}
+
 // Otros handlers...
 // ...
 
@@ -38,4 +43,5 @@ module.exports = {
   showHome,
   showContact,
   showAboutUs,
+  showPanel,
 };
