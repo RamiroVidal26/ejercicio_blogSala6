@@ -34,3 +34,7 @@ module.exports = (app) => {
   app.use("/", publicRoutes);
   app.use("/panel", privateRoutes);
 };
+
+
+// Cuando modificamos un post que nos aparezca la foto correspondiente para que no desaparezca
+// Fecha y hora formato
