@@ -26,6 +26,7 @@
     </div>
 
     <div class="container">
+      <% if (bandera) {console.log("333")} %>
       <form action="/comentarios/<%= article.id %>" method="post">
         <div class="mb-3">
           <input name="name" type="text" class="form-control" placeholder="Name" />
