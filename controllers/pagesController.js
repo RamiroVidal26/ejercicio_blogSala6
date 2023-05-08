@@ -35,7 +35,10 @@ async function showAboutUs(req, res) {
 }
 
 async function showPanel(req, res) {
-  const articles = await Article.findAll({ include: "user" });
+  const articles = await Article.findAll({
+    order: [["createdAt", "DESC"]],
+    include: "user",
+  });
 
   res.render("panel", { articles });
 }

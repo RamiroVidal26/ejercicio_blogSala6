@@ -1,3 +1,4 @@
+const formidable = require("formidable");
 const { render } = require("ejs");
 const { Article, Comment } = require("../models");
 
@@ -23,13 +24,24 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  const { title, content, userId } = req.body;
-  await Article.create({
-    title,
-    content,
-    userId,
-  });
-  res.redirect("/panel");
+
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/img",
+    keepExtensions: true,
+    });
+
+    form.parse(req, async (err, fields, files) => {
+    const { title, content, userId } = fields;
+    const image = files.image.newFilename;
+    await Article.create({
+      title,
+      content,
+      userId,
+      image
+    });
+    res.redirect("/panel");
+    });
 }
 
 // Show the form for editing the specified resource.

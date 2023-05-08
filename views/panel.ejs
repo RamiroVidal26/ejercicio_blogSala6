@@ -29,6 +29,7 @@
               <th>Id</th>
               <th>Title</th>
               <th>Content</th>
+              <th>image</th>
               <th>Created At</th>
               <th>Author</th>
               <th>Actions</th>
@@ -40,6 +41,7 @@
               <td><%=article.id%></td>
               <td><%=article.title%></td>
               <td><%=article.content%></td>
+              <td><img src="img/<%=article.image%>" alt="" class="img-fluid"></td>
               <td><%=article.createdAt%></td>
               <td><%=article.user.firstname+' '+article.user.lastname%></td>
               <td class="d-flex">
