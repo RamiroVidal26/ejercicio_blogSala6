@@ -1,4 +1,5 @@
 const formidable = require("formidable");
+const { format } = require('date-fns');
 const { Article, Comment } = require("../models");
 
 // Display a listing of the resource.
@@ -6,15 +7,16 @@ async function index(req, res) {}
 
 // Display the specified resource.
 async function show(req, res) {
-  let bandera = false;
   const id = req.params.id;
-  const article = await Article.findByPk(id, { include: "user" });
-  const comments = await Comment.findAll({
+  const article = await Article.findByPk(id, {include: ["user", "comments"]});
+  const comments = article.comments.sort((a, b) => b.createdAt - a.createdAt);//investigar
+  
+ /* const comments = await Comment.findAll({
     where: {
       articleId: id,
     },
-  });
-  res.render("articlePage", { article, comments, bandera });
+  });*/
+  res.render("articlePage", { article, comments, format});
 }
 
 // Show the form for creating a new resource

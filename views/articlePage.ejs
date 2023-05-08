@@ -26,7 +26,6 @@
     </div>
 
     <div class="container">
-      <% if (bandera) {console.log("333")} %>
       <form action="/comentarios/<%= article.id %>" method="post">
         <div class="mb-3">
           <input name="name" type="text" class="form-control" placeholder="Name" />
@@ -46,7 +45,7 @@
       <% for (const comment of comments) {%>
       <div>
         <p>"<%= comment.content %>"</p>
-        <small style="color:#acacac"><%= comment.name %></small>
+        <small style="color:#acacac"><%=comment.name%> - <%=format(comment.createdAt, 'dd/MM/yyyy HH:mm:ss')%></small>
         <hr />
       </div>
 
