@@ -1,6 +1,4 @@
 const formidable = require("formidable");
-const { render } = require("ejs");
-const { format } = require('date-fns');
 const { Article, Comment } = require("../models");
 
 // Display a listing of the resource.
