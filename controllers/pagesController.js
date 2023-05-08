@@ -41,11 +41,11 @@ async function showPanel(req, res) {
   });
 
  /* articles.forEach((article) => {
-        article.createdAt= format(new Date(article.createdAt), 'dd/MM/yyyy HH:mm:ss')
+        article.createdAt= format(article.createdAt, 'dd/MM/yyyy HH:mm:ss')
       });*/
 
 
-res.render("panel", { articles });
+res.render("panel", { articles, format });
 }
 
 // Otros handlers...
