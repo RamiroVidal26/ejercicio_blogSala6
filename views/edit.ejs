@@ -15,7 +15,7 @@
   </head>
   <body>
     <%- include("partials/navbar")%>
-    <form action="/articulos/<%=article.id%>" method="post">
+    <form action="/articulos/<%=article.id%>" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input name="title" type="text" class="form-control" value="<%= article.title %>" />
@@ -24,6 +24,10 @@
         <label for="content" class="form-label">Content</label>
         <textarea class="form-control" name="content" rows="6"><%= article.content %></textarea>
       </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Seleccionar una imagen</label>
+        <input id="image" name="image" type="file" class="form-control">
+        </div>
       <button type="submit" class="btn btn-success">Enviar</button>
     </form>
     <script
@@ -31,5 +35,11 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const image = document.querySelector("#image")
+      window.addEventListener("click", ()=>{
+        console.log(image);
+      })
+    </script>
   </body>
 </html>

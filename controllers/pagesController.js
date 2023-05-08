@@ -15,7 +15,7 @@
  * En caso de estar creando una API, este controlador carece de sentido y
  * no debería existir.
  */
-
+const { format } = require('date-fns');
 const { Article, User } = require("../models");
 
 async function showHome(req, res) {
@@ -40,7 +40,12 @@ async function showPanel(req, res) {
     include: "user",
   });
 
-  res.render("panel", { articles });
+ /* articles.forEach((article) => {
+        article.createdAt= format(new Date(article.createdAt), 'dd/MM/yyyy HH:mm:ss')
+      });*/
+
+
+res.render("panel", { articles });
 }
 
 // Otros handlers...

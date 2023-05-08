@@ -1,5 +1,6 @@
 const formidable = require("formidable");
 const { render } = require("ejs");
+const { format } = require('date-fns');
 const { Article, Comment } = require("../models");
 
 // Display a listing of the resource.
@@ -24,7 +25,6 @@ async function create(req, res) {
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-
   const form = formidable({
     multiples: true,
     uploadDir: __dirname + "/../public/img",
@@ -38,7 +38,7 @@ async function store(req, res) {
       title,
       content,
       userId,
-      image
+      image,
     });
     res.redirect("/panel");
     });
@@ -53,7 +53,28 @@ async function edit(req, res) {
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  const id = req.params.id;
+  const id = req.params.id
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/img",
+    keepExtensions: true,
+    });
+
+    form.parse(req, async (err, fields, files) => {
+    const { title, content} = fields;
+    const image = files.image.newFilename;
+    await Article.update({
+      title,
+      content,
+      image
+    },{
+      where: {
+        id: id,
+      },
+    },);
+    res.redirect("/panel");
+    });
+  /*const id = req.params.id;
   const { title, content } = req.body;
   await Article.update(
     { title, content },
@@ -63,13 +84,12 @@ async function update(req, res) {
       },
     },
   );
-  res.redirect("/panel");
+  res.redirect("/panel");*/
 }
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
   const id = req.params.id;
-  console.log("hasta aca anda joya");
   await Article.destroy({
     where: {
       id: id,
