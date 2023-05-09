@@ -33,8 +33,9 @@ module.exports = (app) => {
   app.use("/comentarios", commentRoutes);
   app.use("/", publicRoutes);
   app.use("/panel", privateRoutes);
+  app.use("/registro", publicRoutes);
+  app.use("/login", publicRoutes);
 };
-
 
 // Cuando modificamos un post que nos aparezca la foto correspondiente para que no desaparezca
 // Fecha y hora formato

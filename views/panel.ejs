@@ -32,6 +32,7 @@
               <th>image</th>
               <th>Created At</th>
               <th>Author</th>
+
               <th>Actions</th>
             </tr>
           </thead>
@@ -41,7 +42,7 @@
               <td><%=article.id%></td>
               <td><%=article.title%></td>
               <td><%=article.content%></td>
-              <td><img src="img/<%=article.image%>" alt="" class="img-fluid"></td>
+              <td><img src="img/<%=article.image%>" alt="" class="img-fluid" /></td>
               <td><%=format(article.createdAt, 'dd/MM/yyyy HH:mm:ss')%></td>
               <td><%=article.user.firstname+' '+article.user.lastname%></td>
               <td class="d-flex">

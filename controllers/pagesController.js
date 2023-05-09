@@ -15,7 +15,7 @@
  * En caso de estar creando una API, este controlador carece de sentido y
  * no debería existir.
  */
-const { format } = require('date-fns');
+const { format } = require("date-fns");
 const { Article, User } = require("../models");
 
 async function showHome(req, res) {
@@ -25,7 +25,12 @@ async function showHome(req, res) {
   });
   res.render("home", { articles, format });
 }
-
+async function showLogin(req, res) {
+  res.render("login");
+}
+async function showRegistro(req, res) {
+  res.render("registro");
+}
 async function showContact(req, res) {
   res.render("contact");
 }
@@ -40,12 +45,11 @@ async function showPanel(req, res) {
     include: "user",
   });
 
- /* articles.forEach((article) => {
+  /* articles.forEach((article) => {
         article.createdAt= format(article.createdAt, 'dd/MM/yyyy HH:mm:ss')
       });*/
 
-
-res.render("panel", { articles, format });
+  res.render("panel", { articles, format });
 }
 
 // Otros handlers...
@@ -56,4 +60,6 @@ module.exports = {
   showContact,
   showAboutUs,
   showPanel,
+  showLogin,
+  showRegistro,
 };

@@ -20,7 +20,11 @@ class User extends Model {
         email: {
           type: DataTypes.STRING,
           allowNull: false,
-        }
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
       },
       {
         sequelize,

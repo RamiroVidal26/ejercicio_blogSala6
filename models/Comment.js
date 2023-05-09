@@ -9,10 +9,7 @@ class Comment extends Model {
           primaryKey: true,
           autoIncrement: true,
         },
-        name: {
-          type: DataTypes.STRING,
-          allowNull: false,
-        },
+
         content: {
           type: DataTypes.TEXT,
         },
