@@ -23,16 +23,18 @@
   <body>
     <%- include("partials/navbar")%>
 
-    <div class="container">
-      <h1><%= article.title %></h1>
-      <p>Creado por <%=article.user.firstname %></p>
+    <div class="container-fluid pt-5 pb-5 header">
+      <div class="container text-start width">
+        <h1><%= article.title %></h1>
+        <p>Creado por <%=article.user.firstname %></p>
+      </div>
     </div>
-
-    <div class="container">
+    
+    <div class="container width">
       <p><%= article.content %></p>
     </div>
 
-    <div class="container">
+    <div class="container width">
       <form action="/comentarios/<%= article.id %>" method="post">
         <div class="mb-3">
           <input name="name" type="text" class="form-control" placeholder="Name" />
@@ -47,7 +49,7 @@
       </form>
     </div>
 
-    <div class="container">
+    <div class="container width">
       <h3>Comments (<%= comments.length %>)</h3>
       <% for (const comment of comments) {%>
       <div>
