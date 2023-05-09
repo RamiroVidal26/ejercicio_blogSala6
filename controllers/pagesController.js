@@ -23,7 +23,7 @@ async function showHome(req, res) {
     order: [["createdAt", "DESC"]],
     include: "user",
   });
-  res.render("home", { articles });
+  res.render("home", { articles, format });
 }
 
 async function showContact(req, res) {
