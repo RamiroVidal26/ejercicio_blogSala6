@@ -45,9 +45,6 @@ async function showPanel(req, res) {
     include: "user",
   });
 
-  /* articles.forEach((article) => {
-        article.createdAt= format(article.createdAt, 'dd/MM/yyyy HH:mm:ss')
-      });*/
 
   res.render("panel", { articles, format });
 }
@@ -62,4 +59,5 @@ module.exports = {
   showPanel,
   showLogin,
   showRegistro,
+  
 };

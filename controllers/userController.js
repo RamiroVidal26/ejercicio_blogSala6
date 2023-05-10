@@ -10,7 +10,25 @@ async function show(req, res) {}
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+
+  const { firstname, lastname, email, password } = req.body;
+  console.log(firstname, lastname, email, password);
+  const existingUser = await User.findOne({ where: {email} });
+
+  if (existingUser) {
+    return res.status(400).send("El correo electrónico ya está registrado");
+  } else{
+
+  await User.create({
+    firstname,
+    lastname,
+    email,
+    password,
+  })
+  res.redirect("/");
+}};
+
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}

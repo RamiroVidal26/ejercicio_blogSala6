@@ -11,12 +11,62 @@ const LocalStrategy = require("passport-local");
 
 app.use(
   session({
-    secret: "AlgúnTextoSuperSecreto",
-    resave: false, // Docs: "The default value is true, but using the default has been deprecated".
-    saveUninitialized: false, // Docs: "The default value is true, but using the default has been deprecated".
-  }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
 );
-passport.use(new LocalStrategy(async function (username, password, cb) {}));
+app.use(passport.session());
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async function (email, password, done) {
+      try {
+        const loginUser = await User.findOne({ where: { email: email } });
+        if (!loginUser) {
+          return done(null, false, { message: "Credenciales incorrectas!" });
+        } 
+        const checkPasswords = await bcrypt.compare(password, loginUser.password);
+        if(!checkPasswords){
+          return done(null, false, {message: "Credenciales incorrectas!"})
+        }
+        return done (null, userLogin);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+);
+passport.serializeUser(function (user, done){
+  document(null, user.id);
+});
+
+passport.deserializeUser(async function (id, done){
+  try {
+    const user = await User.findByPk(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
+//NO ENTIENDO PORQUE HERNAN USO RES.SEND CON UN STRING
+app.get("/login", async function (req, res){
+  if (req.isAuthenticated()){
+    res.render("/admin");
+  } else {
+    res.redirect("/registro");
+  }
+});
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/admin",
+    failureRedirect: "/registro",
+  })
+);
 
 app.use(methodOverride("_method"));
 app.use(express.static("public"));

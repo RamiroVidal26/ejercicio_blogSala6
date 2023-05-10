@@ -34,6 +34,7 @@ module.exports = (app) => {
   app.use("/", publicRoutes);
   app.use("/panel", privateRoutes);
   app.use("/registro", publicRoutes);
+  app.use("/registro", userRoutes);
   app.use("/login", publicRoutes);
 };
 
