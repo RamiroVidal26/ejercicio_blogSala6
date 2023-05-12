@@ -11,15 +11,21 @@ class Article extends Model {
         },
         title: {
           type: DataTypes.STRING,
-          allowNull:false,
+          allowNull: false,
+          validate: {
+            notEmpty: true,
+          },
         },
         content: {
           type: DataTypes.TEXT,
-          allowNull:false,
+          allowNull: false,
+          validate: {
+            notEmpty: true,
+          },
         },
-        image:{
+        image: {
           type: DataTypes.STRING,
-        }
+        },
       },
       {
         sequelize,

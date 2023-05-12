@@ -16,18 +16,15 @@
  * no debería existir.
  */
 const { format } = require("date-fns");
-const { Article, User } = require("../models");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-
+const { Article } = require("../models");
 
 async function showHome(req, res) {
   const articles = await Article.findAll({
     order: [["createdAt", "DESC"]],
     include: "user",
   });
-  //PREGUNTARLE A HERNAN PORQUE NO FUNCIONABA EL INCLUDE SIN EL REQ:REQ.
-  return res.render("home", { articles, format, req:req });
+
+  return res.render("home", { articles, format, req: req });
 }
 async function showLogin(req, res) {
   return res.render("login");
@@ -44,17 +41,20 @@ async function showAboutUs(req, res) {
 }
 
 async function showPanel(req, res) {
-  const articles = await Article.findAll({
-    order: [["createdAt", "DESC"]],
-    include: "user",
-  });
-
-  if(req.isAuthenticated()){
-   return res.render("panel", { articles, format});
+  if (req.isAuthenticated()) {
+    const user = req.user;
+    //console.log(user);
+    const articles = await Article.findAll({
+      order: [["createdAt", "DESC"]],
+      include: "user",
+      where: { userId: user.id },
+    });
+    return res.render("panel", { articles, format });
   } else {
-    console.log(req.isAuthenticated());
-   return res.redirect("/usuarios/login");
-  }};
+    console.log(req.isAuthenticated()); //me dice true or false
+    return res.redirect("/usuarios/login");
+  }
+}
 
 // Otros handlers...
 // ...
@@ -66,5 +66,4 @@ module.exports = {
   showPanel,
   showLogin,
   showRegistro,
-  
 };

@@ -7,13 +7,10 @@ const articleController = require("../controllers/articleController");
 
 router.get("/", articleController.index);
 router.get("/crear", articleController.create);
-router.post("/", articleController.store);
+router.post("/crear", articleController.store);
 router.get("/:id", articleController.show);
 router.get("/:id/editar", articleController.edit);
 router.post("/:id", articleController.update);
 router.get("/:id/eliminar", articleController.destroy);
 
 module.exports = router;
-
-
-

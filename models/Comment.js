@@ -12,6 +12,7 @@ class Comment extends Model {
 
         content: {
           type: DataTypes.TEXT,
+          allowNull: false,
         },
       },
       {

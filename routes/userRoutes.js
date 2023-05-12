@@ -12,10 +12,10 @@ router.get("/registro", pagesController.showRegistro);
 router.post("/registro", userController.store);
 router.get("/login", pagesController.showLogin);
 router.post("/login", userController.login);
+router.get("/logout", userController.logout);
 //router.get("/:id", userController.show);
 router.patch("/:id", userController.update);
 router.delete("/:id", userController.destroy);
 router.get("/:id/editar", userController.edit);
-router.get("/logout", userController.logout)
 
 module.exports = router;

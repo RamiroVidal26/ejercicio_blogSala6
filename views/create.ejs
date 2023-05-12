@@ -15,19 +15,25 @@
   </head>
   <body>
     <%- include("partials/navbar")%>
-    <form action="/articulos" method="POST" enctype="multipart/form-data">
+    <form action="/articulos/crear" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input name="title" type="text" class="form-control" placeholder="Insert name..." />
+        <input
+          required
+          name="title"
+          type="text"
+          class="form-control"
+          placeholder="Insert name..."
+        />
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <textarea class="form-control" name="content" rows="3"></textarea>
+        <textarea required class="form-control" name="content" rows="3"></textarea>
       </div>
       <div class="mb-3">
         <label for="image" class="form-label">Seleccionar una imagen</label>
-        <input id="image" name="image" type="file" class="form-control">
-        </div>
+        <input id="image" name="image" type="file" class="form-control" />
+      </div>
       <div class="mb-3">
         <label for="userId" class="form-label">User Number</label>
         <input name="userId" type="text" class="form-control" placeholder="Insert number..." />
