@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-   <link rel="stylesheet" href="css/articleStyles.css">
+    <link rel="stylesheet" href="css/articleStyles.css" />
     <title>ha_blog</title>
   </head>
   <body>
@@ -29,7 +29,7 @@
         <p>Creado por <%=article.user.firstname %></p>
       </div>
     </div>
-    
+
     <div class="container width">
       <p><%= article.content %></p>
     </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="mb-3">
           <label for="content" class="form-label">Content</label>
-          <textarea class="form-control" name="content" rows="4"></textarea>
+          <textarea required class="form-control" name="content" rows="4"></textarea>
         </div>
         <button type="submit" style="width: 100%" class="btn btn-primary d-block text-center mb-5">
           Send
@@ -54,7 +54,9 @@
       <% for (const comment of comments) {%>
       <div>
         <p>"<%= comment.content %>"</p>
-        <small style="color:#acacac"><%=comment.name%> - <%=format(comment.createdAt, 'dd/MM/yyyy HH:mm:ss')%></small>
+        <small style="color: #acacac"
+          ><%=comment.name%> - <%=format(comment.createdAt, 'dd/MM/yyyy HH:mm:ss')%></small
+        >
         <hr />
       </div>
 

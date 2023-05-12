@@ -57,8 +57,12 @@ async function store(req, res) {
 // Show the form for editing the specified resource.
 async function edit(req, res) {
   const id = req.params.id;
-  const article = await Article.findByPk(id);
-  res.render("edit", { article });
+  try {
+    const article = await Article.findByPk(id);
+    res.render("edit", { article });
+  } catch (error) {
+    res.redirect(`/articulos/${id}/editar`);
+  }
 }
 
 // Update the specified resource in storage.
