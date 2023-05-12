@@ -17,26 +17,30 @@
  */
 const { format } = require("date-fns");
 const { Article, User } = require("../models");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+
 
 async function showHome(req, res) {
   const articles = await Article.findAll({
     order: [["createdAt", "DESC"]],
     include: "user",
   });
-  res.render("home", { articles, format });
+  //PREGUNTARLE A HERNAN PORQUE NO FUNCIONABA EL INCLUDE SIN EL REQ:REQ.
+  return res.render("home", { articles, format, req:req });
 }
 async function showLogin(req, res) {
-  res.render("login");
+  return res.render("login");
 }
 async function showRegistro(req, res) {
-  res.render("registro");
+  return res.render("registro");
 }
 async function showContact(req, res) {
-  res.render("contact");
+  return res.render("contact");
 }
 
 async function showAboutUs(req, res) {
-  res.render("aboutUs");
+  return res.render("aboutUs");
 }
 
 async function showPanel(req, res) {
@@ -45,9 +49,12 @@ async function showPanel(req, res) {
     include: "user",
   });
 
-
-  res.render("panel", { articles, format });
-}
+  if(req.isAuthenticated()){
+   return res.render("panel", { articles, format});
+  } else {
+    console.log(req.isAuthenticated());
+   return res.redirect("/usuarios/login");
+  }};
 
 // Otros handlers...
 // ...

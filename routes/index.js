@@ -27,15 +27,14 @@ module.exports = (app) => {
    * nombres de variables, funciones, etc, que siempre se recomienda que estén
    * en inglés.
    */
-
-  app.use("/usuarios", userRoutes);
+  app.use("/", publicRoutes);
+  //app.use("/login", userRoutes);
   app.use("/articulos", articleRoutes);
   app.use("/comentarios", commentRoutes);
-  app.use("/", publicRoutes);
+  
   app.use("/panel", privateRoutes);
-  app.use("/registro", publicRoutes);
-  app.use("/registro", userRoutes);
-  app.use("/login", publicRoutes);
+  app.use("/usuarios", userRoutes);
+  
 };
 
 // Cuando modificamos un post que nos aparezca la foto correspondiente para que no desaparezca

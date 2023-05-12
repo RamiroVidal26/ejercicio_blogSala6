@@ -9,10 +9,10 @@ async function validateComment(req, res, next)
     {
       res.send("Faltan campos por completar\n http://localhost:3000");
     }
-    else
-    {
       next()
-    }
+    
 }
+
+
 
 module.exports = {validateComment};
